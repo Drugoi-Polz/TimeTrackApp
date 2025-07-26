@@ -1,7 +1,12 @@
 <script setup>
-
+import Sidebar from "./components/TheSideBar.vue";
 </script>
-	
+
 <template>
-	<h1>Time Track App</h1>
+  <div class="flex h-screen">
+    <Sidebar />
+    <main class="flex-1 overflow-auto">
+      <router-view />
+    </main>
+  </div>
 </template>
