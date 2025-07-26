@@ -1,21 +1,20 @@
+<script setup>
+import SideBarItem from './SideBarItem.vue'
+import { items } from "../constans"
+</script>
+
 <template>
-  <aside class="w-64 bg-gray-800 text-white h-full flex flex-col">
-    <div class="p-6 text-xl font-semibold">Time Tracker</div>
-    <nav class="flex-1">
-      <ul>
-        <li class="px-6 py-3 hover:bg-gray-700">
-          <router-link to="/tasks">Задачи</router-link>
-        </li>
-        <li class="px-6 py-3 hover:bg-gray-700">
-          <router-link to="/activities">Активности</router-link>
-        </li>
-        <li class="px-6 py-3 hover:bg-gray-700">
-          <router-link to="/statistics">Статистика</router-link>
-        </li>
-      </ul>
-    </nav>
-    <div class="p-6">
-      <!-- Дополнительные кнопки/инфо -->
-    </div>
-  </aside>
+	<aside class="w-54 bg-gray-800 h-full flex flex-col">
+		<div class="p-6 text-xl font-bold text-white">Time Tracker</div>
+		<nav class="flex-1 overflow-auto">
+			<SideBarItem
+				v-for="item in items"
+				:key="item.label"
+				:to="item.to"
+				:icon="item.icon"
+				:label="item.label"
+			/>
+		</nav>
+		<div class="p-6 text-gray-400 text-sm">version: 0.1</div>
+	</aside>
 </template>
