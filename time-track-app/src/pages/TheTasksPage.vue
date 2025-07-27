@@ -6,6 +6,8 @@ import ThePageTitle from '../components/UI/ThePageTitle.vue'
 import { DEFAULT_BUTTON } from '../constans'
 import TaskModal from '../components/TaskModal.vue'
 import ConfirmModal from '../components/UI/ConfirmModal.vue'
+import TaskTemplateCard from '../components/TaskTemplateCard.vue'
+import TemplateModal from '../components/TemplateModal.vue'
 
 const showTaskModal = ref(false)
 const taskToEdit = ref(null)
@@ -21,20 +23,36 @@ function handleSave(task) {
 	taskToEdit.value = null
 }
 
-function requestDelete(task) {
+function requestDeleteTask(task) {
 	taskToDelete.value = task
-	showConfirm.value = true
+	showConfirmTask.value = true
 }
 
-function confirmDelete() {
+function requestDeleteTemplate(template) {
+	templateToDelete.value = template
+	showConfirmTemplate.value = true
+}
+
+function confirmDeleteTask() {
 	tasks.value = tasks.value.filter((t) => t.id !== taskToDelete.value.id)
 	taskToDelete.value = null
-	showConfirm.value = false
+	showConfirmTask.value = false
 }
 
-function cancelDelete() {
+function confirmDeleteTemplate() {
+	taskTemplates.value = taskTemplates.value.filter((t) => t.id !== templateToDelete.value.id)
+	templateToDelete.value = null
+	showConfirmTemplate.value = false
+}
+
+function cancelDeleteTask() {
 	taskToDelete.value = null
-	showConfirm.value = false
+	showConfirmTask.value = false
+}
+
+function cancelDeleteTemplate() {
+	templateToDelete.value = null
+	showConfirmTemplate.value = false
 }
 
 function handleEdit(task) {
@@ -45,8 +63,18 @@ function handleEdit(task) {
 const tasks = ref([])
 const categorySuggestions = ref([])
 
-const showConfirm = ref(false)
+const showConfirmTask = ref(false)
+const showConfirmTemplate = ref(false)
 const taskToDelete = ref(null)
+const templateToDelete = ref(null)
+
+const showTemplateModal = ref(false)
+const taskTemplates = ref([])
+
+function handleSaveTemplate(template) {
+	taskTemplates.value.push(template)
+	showTemplateModal.value = false
+}
 </script>
 
 <template>
@@ -73,18 +101,43 @@ const taskToDelete = ref(null)
 						:key="task.id"
 						:task="task"
 						@edit="handleEdit"
-						@delete="requestDelete"
+						@delete="requestDeleteTask"
 					/>
 				</div>
 			</div>
 
 			<div class="col-span-1 bg-white rounded-2xl shadow-xl shadow-gray-300 p-4">
 				<div class="flex justify-end mb-4">
-					<BaseButton :variant="DEFAULT_BUTTON"> Создать шаблон </BaseButton>
+					<BaseButton :variant="DEFAULT_BUTTON" @click="showTemplateModal = true">
+						Создать шаблон
+					</BaseButton>
 				</div>
-
+				<div class="flex flex-col gap-3 mt-2">
+					<TaskTemplateCard
+						v-for="template in taskTemplates"
+						:key="template.id"
+						:template="template"
+						@delete="requestDeleteTemplate"
+						@click="
+							() => {
+								taskToEdit = {
+									category: template.category,
+									color: template.color,
+									iconName: template.iconName,
+									icon: template.icon,
+								}
+								showTaskModal = true
+							}
+						"
+					/>
+				</div>
 			</div>
 		</div>
+		<TemplateModal
+			v-if="showTemplateModal"
+			@save="handleSaveTemplate"
+			@close="showTemplateModal = false"
+		/>
 		<TaskModal
 			v-if="showTaskModal"
 			:categorySuggestions="categorySuggestions"
@@ -98,11 +151,18 @@ const taskToDelete = ref(null)
 			"
 		/>
 		<ConfirmModal
-			v-if="showConfirm"
+			v-if="showConfirmTask"
 			title="Удалить задачу?"
 			message="Вы уверены, что хотите удалить эту задачу? Это действие необратимо."
-			@confirm="confirmDelete"
-			@cancel="cancelDelete"
+			@confirm="confirmDeleteTask"
+			@cancel="cancelDeleteTask"
+		/>
+		<ConfirmModal
+			v-if="showConfirmTemplate"
+			title="Удалить шаблон?"
+			message="Вы уверены, что хотите удалить этот шаблон? Это действие необратимо."
+			@confirm="confirmDeleteTemplate"
+			@cancel="cancelDeleteTemplate"
 		/>
 	</div>
 </template>

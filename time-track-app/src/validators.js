@@ -12,8 +12,16 @@ export function isTaskValid(task) {
 	return (
 		isStringAndNotEmpty(task.title) &&
 		isString(task.description) &&
-		isString(task.category) &&
+		isStringAndNotEmpty(task.category) &&
 		isString(task.iconName) &&
+		isHexColor(task.color)
+	)
+}
+
+export function isTemplateValid(task) {
+	return (
+		isStringAndNotEmpty(task.category) &&
+		isStringAndNotEmpty(task.iconName) &&
 		isHexColor(task.color)
 	)
 }

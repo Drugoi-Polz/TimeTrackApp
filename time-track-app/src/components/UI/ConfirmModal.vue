@@ -1,6 +1,6 @@
 <script setup>
-import BaseButton from './BaseButton.vue';
-import { DANGER_BUTTON, PRIMARY_BUTTON } from '../../constans';
+import BaseButton from './BaseButton.vue'
+import { DANGER_BUTTON, PRIMARY_BUTTON } from '../../constans'
 
 const props = defineProps({
 	title: String,
@@ -24,16 +24,10 @@ const emit = defineEmits(['confirm', 'cancel'])
 			<h2 class="text-xl font-semibold text-gray-800">{{ title }}</h2>
 			<p class="text-gray-600">{{ message }}</p>
 			<div class="flex justify-end gap-2 pt-4">
-				<BaseButton
-					:variant="PRIMARY_BUTTON"
-					@click="$emit('cancel')"
-				>
+				<BaseButton :variant="PRIMARY_BUTTON" @click="$emit('cancel')">
 					{{ cancelText }}
 				</BaseButton>
-				<BaseButton
-					:variant="DANGER_BUTTON"
-					@click="$emit('confirm')"
-				>
+				<BaseButton :variant="DANGER_BUTTON" @click="$emit('confirm')">
 					{{ confirmText }}
 				</BaseButton>
 			</div>
