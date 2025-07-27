@@ -9,7 +9,7 @@ const props = defineProps({
 	template: {
 		type: Object,
 		required: true,
-        validator: isTemplateValid
+		validator: isTemplateValid,
 	},
 })
 
@@ -21,11 +21,13 @@ const emit = defineEmits(['delete'])
 		class="flex items-center justify-between p-3 rounded-xl shadow cursor-pointer"
 		:style="{ backgroundColor: template.color || '#f3f4f6' }"
 	>
-		<div class="flex items-center gap-3">
-			<div class="bg-white rounded-full p-1 shadow">
+		<div class="flex items-center gap-3 flex-1 min-w-0">
+			<div class="bg-white rounded-full p-1 shadow shrink-0">
 				<component :is="template.icon" class="w-6 h-6 text-gray-700" />
 			</div>
-			<span class="text-md font-medium text-white">{{ template.category }}</span>
+			<span class="text-md font-medium text-white truncate">
+				{{ template.category }}
+			</span>
 		</div>
 
 		<BaseButton
@@ -37,3 +39,4 @@ const emit = defineEmits(['delete'])
 		</BaseButton>
 	</div>
 </template>
+

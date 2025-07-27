@@ -32,11 +32,13 @@ watch(
 )
 
 const filtered = computed(() =>
-	props.suggestions.filter(
-		(item) =>
-			item.toLowerCase().includes(inputValue.value.toLowerCase()) &&
-			item.toLowerCase() !== inputValue.value.toLowerCase()
-	)
+	props.suggestions
+		.filter((item) => typeof item === 'string')
+		.filter(
+			(item) =>
+				item.toLowerCase().includes(inputValue.value.toLowerCase()) &&
+				item.toLowerCase() !== inputValue.value.toLowerCase()
+		)
 )
 
 function onFocus() {
