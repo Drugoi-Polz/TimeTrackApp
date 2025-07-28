@@ -1,6 +1,25 @@
+<script setup>
+import { defineProps } from 'vue'
+import { formatTime, formatTimestamp } from '../functions'
+import ThePageTitle from '../components/UI/ThePageTitle.vue'
+import ActivityItem from '../components/ActivityItem.vue'
+
+const props = defineProps({
+	activities: {
+		type: Array,
+		default: () => [],
+	},
+})
+</script>
+
 <template>
-    <div class="p-4">
-      <h1 class="text-2xl font-bold mb-4">Активности</h1>
-      <!-- TODO: Buttons вчера/сегодня/завтра + list of activities -->
-    </div>
-  </template>
+	<div class="p-8 bg-gray-100 min-h-screen">
+
+		<ThePageTitle>Активности</ThePageTitle>
+
+		<div v-if="activities.length" class="space-y-6">
+			<ActivityItem v-for="act in activities" :key="act.id" :activity="act" />
+		</div>
+		<div v-else class="text-gray-500">Нет завершённых активностей.</div>
+	</div>
+</template>

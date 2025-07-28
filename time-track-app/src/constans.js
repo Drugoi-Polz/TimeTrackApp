@@ -8,6 +8,8 @@ export const SUCCESS_BUTTON = 'success';
 export const TEXT_BUTTON_CONTENT = 'text';
 export const ICON_BUTTON_CONTENT = 'icon';
 
+export const MAX_TIMER_SECONDS = 8 * 3600;
+
 export const items = [
     { label: 'Задачи', to: '/tasks', icon: HomeIcon },
     { label: 'Активности', to: '/activities', icon: ClockIcon },
@@ -26,4 +28,5 @@ export const STORAGE_KEYS = {
 	tasks: 'myapp_tasks',
 	templates: 'myapp_templates',
 	categories: 'myapp_categories',
+    activities: 'myapp_activities'
 }

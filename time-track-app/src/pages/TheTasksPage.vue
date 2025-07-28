@@ -12,6 +12,8 @@ import { useDeleteConfirmation } from '../composables/useDeleteConfirmation'
 import { usePersistentState } from '../composables/usePersistentState'
 import { STORAGE_KEYS } from '../constans'
 
+const emit = defineEmits(['start', 'stop'])
+
 const tasks = usePersistentState(STORAGE_KEYS['tasks'])
 const taskTemplates = usePersistentState(STORAGE_KEYS['templates'])
 const categorySuggestions = usePersistentState(STORAGE_KEYS['categories'])
@@ -54,12 +56,10 @@ function useTemplate(template) {
 	}
 	showTaskModal.value = true
 }
-
-function handleUpdate(updatedTask) {
-  tasks.value = tasks.value.filter(t => t.id !== updatedTask.id)
-  tasks.value.unshift(updatedTask)
-  taskToEdit.value = null
-  showTaskModal.value = false
+function updateTasksOrder(updatedTask) {
+	emit('start', updatedTask)
+	tasks.value = tasks.value.filter((t) => t.id !== updatedTask.id)
+	tasks.value.unshift(updatedTask)
 }
 </script>
 
@@ -78,7 +78,8 @@ function handleUpdate(updatedTask) {
 				"
 				@edit="handleEdit"
 				@delete="(task) => requestDelete(task, 'task')"
-				@update="handleUpdate"
+				@start="updateTasksOrder"
+				@stop="$emit('stop', $event)"
 			/>
 
 			<TemplatesSection

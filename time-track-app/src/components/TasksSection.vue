@@ -8,7 +8,7 @@ const props = defineProps({
 	tasks: Array,
 })
 
-const emit = defineEmits(['create', 'edit', 'delete', 'update'])
+const emit = defineEmits(['create', 'edit', 'delete', 'start', 'stop'])
 </script>
 
 <template>
@@ -24,8 +24,8 @@ const emit = defineEmits(['create', 'edit', 'delete', 'update'])
 				:key="task.id"
 				:task="task"
 				@edit="emit('edit', task)"
-				@delete="emit('delete', task)"
-				@update="emit('update', task)"
+				@start="$emit('start', $event)"
+  				@stop="$emit('stop', $event)"
 			/>
 		</div>
 	</div>
