@@ -54,6 +54,13 @@ function useTemplate(template) {
 	}
 	showTaskModal.value = true
 }
+
+function handleUpdate(updatedTask) {
+  tasks.value = tasks.value.filter(t => t.id !== updatedTask.id)
+  tasks.value.unshift(updatedTask)
+  taskToEdit.value = null
+  showTaskModal.value = false
+}
 </script>
 
 <template>
@@ -71,6 +78,7 @@ function useTemplate(template) {
 				"
 				@edit="handleEdit"
 				@delete="(task) => requestDelete(task, 'task')"
+				@update="handleUpdate"
 			/>
 
 			<TemplatesSection

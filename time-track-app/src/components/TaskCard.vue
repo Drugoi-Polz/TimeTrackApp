@@ -1,18 +1,24 @@
 <script setup>
 import { defineProps, computed } from 'vue'
-import { TrashIcon, PencilIcon, PlayIcon } from '@heroicons/vue/24/outline'
+import { TrashIcon, PencilIcon } from '@heroicons/vue/24/outline'
 
 import BaseButton from './UI/BaseButton.vue'
-import { DANGER_BUTTON, ICON_BUTTON_CONTENT, PRIMARY_BUTTON, SUCCESS_BUTTON } from '../constans'
+import { DANGER_BUTTON, ICON_BUTTON_CONTENT, PRIMARY_BUTTON} from '../constans'
 import { isTaskValid } from '../validators'
+import Timer from './Timer.vue'
 
 const props = defineProps({
 	task: Object,
     required: true,
     validator: isTaskValid
 })
+const emit = defineEmits(['edit', 'delete', 'update'])
 
 const cardStyle = computed(() => `background-color: ${props.task.color || '#b2dfdb'}`)
+
+function updateElapsed(newVal) {
+  emit('update', { ...props.task, elapsed: newVal })
+}
 </script>
 
 <template>
@@ -31,9 +37,9 @@ const cardStyle = computed(() => `background-color: ${props.task.color || '#b2df
 		</div>
 
 		<div class="flex gap-2 items-center ml-4 shrink-0">
-			<BaseButton :contentType="ICON_BUTTON_CONTENT" :variant="SUCCESS_BUTTON">
-				<PlayIcon />
-			</BaseButton>
+			<Timer
+				:initial="task.elapsed" @update="updateElapsed"
+			></Timer>
 			<BaseButton :contentType="ICON_BUTTON_CONTENT" :variant="PRIMARY_BUTTON" @click="$emit('edit', task)">
 				<PencilIcon />
 			</BaseButton>
