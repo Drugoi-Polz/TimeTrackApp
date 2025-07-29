@@ -9,6 +9,7 @@ import TheDaySwitch from '../components/TheDaySwitch.vue'
 import TheSelectedDayText from '../components/TheSelectedDayText.vue'
 import IconTextButton from '../components/UI/IconTextButton.vue'
 import TheListStatistics from '../components/TheListStatistics.vue'
+import PieCharts from '../components/charts/PieCharts.vue'
 
 const props = defineProps({
 	activities: {
@@ -47,15 +48,13 @@ const summary = computed(() => summarizeByTask(dailyActivities.value))
 				@click="viewMode = mode.key"
 			/>
 		</div>
-        
-        <TheListStatistics
-             v-show="viewMode == 'list'"
-             :activities="dailyActivities"
-        />
 
-		
-        <div v-show="viewMode == 'line'">График</div>
-        <div v-show="viewMode == 'pie'">Круговая</div>
+		<TheListStatistics v-show="viewMode == 'list'" :activities="dailyActivities" />
+		<div v-show="viewMode === 'pie'" class="mx-150 mt-20">
+            <PieCharts :data="dailyActivities" />
+        </div>
+
+		<div v-show="viewMode == 'line'">График</div>
 
 		<TheDaySwitch @update:day="setDate" :selectedDate="selectedDate" :todayDate="todayDate" />
 	</div>
