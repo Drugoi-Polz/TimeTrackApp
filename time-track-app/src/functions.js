@@ -23,9 +23,20 @@ export function getActivitiesForDate(activities, date) {
 	return activities
 		.map((act) => ({
 			...act,
-			intervals: act.intervals.filter((iv) =>
-				isSameDay(new Date(iv.start), date)
-			),
+			intervals: act.intervals.filter((iv) => isSameDay(new Date(iv.start), date)),
 		}))
 		.filter((act) => act.intervals.length > 0)
+}
+
+export function summarizeByTask(activities) {
+	const map = new Map()
+	activities.forEach((act) => {
+		const sum = act.intervals.reduce((acc, iv) => acc + iv.duration, 0)
+		if (map.has(act.id)) {
+			map.get(act.id).total += sum
+		} else {
+			map.set(act.id, { id: act.id, title: act.title, total: sum, color: act.color })
+		}
+	})
+	return Array.from(map.values())
 }

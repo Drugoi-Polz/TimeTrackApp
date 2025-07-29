@@ -25,6 +25,7 @@ const variantClasses = computed(() => {
 		success: 'bg-green-300 hover:bg-green-400',
 	}
 	return `${base} ${variants[props.variant] || variants.primary}`
+	
 })
 </script>
 

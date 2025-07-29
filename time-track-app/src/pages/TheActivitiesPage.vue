@@ -34,7 +34,7 @@ const filteredActivities = computed(() =>
 		<div v-if="filteredActivities.length" class="space-y-6">
 			<ActivityItem v-for="act in filteredActivities" :key="act.id" :activity="act" />
 		</div>
-		<div v-else class="text-gray-500 text-lg">Нет активностей за выбранную дату.</div>
-		<TheDaySwitch @update:day="setDate" :selectedDate="selectedDate" />
+		<div v-else class="text-gray-500 text-5xl flex justify-center mt-100">Нет активностей за выбранную дату</div>
+		<TheDaySwitch @update:day="setDate" :selectedDate="selectedDate"/>
 	</div>
 </template>

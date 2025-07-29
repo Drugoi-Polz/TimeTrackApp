@@ -16,7 +16,7 @@ function btnClass(date) {
 	const base =
 		'w-full h-full flex items-center justify-center text-sm font-semibold transition-colors duration-200 rounded-lg text-xl'
 	return isSameDay(date, localSelectedDate.value)
-		? base + ' bg-teal-500 text-white shadow-inner'
+		? base + ' bg-teal-600 text-white shadow-inner'
 		: base + ' bg-gray-300 text-gray-700 hover:bg-gray-400'
 }
 const localSelectedDate = ref(props.selectedDate)

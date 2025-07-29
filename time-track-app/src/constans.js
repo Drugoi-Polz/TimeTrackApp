@@ -1,4 +1,4 @@
-import { HomeIcon, ClockIcon, ChartBarIcon } from '@heroicons/vue/24/outline'
+import { HomeIcon, ClockIcon, ChartBarIcon, ArrowTrendingUpIcon, QuestionMarkCircleIcon, ListBulletIcon } from '@heroicons/vue/24/outline'
 
 export const DEFAULT_BUTTON = 'default';
 export const PRIMARY_BUTTON = 'primary';
@@ -14,6 +14,12 @@ export const items = [
     { label: 'Задачи', to: '/tasks', icon: HomeIcon },
     { label: 'Активности', to: '/activities', icon: ClockIcon },
     { label: 'Статистика', to: '/statistics', icon: ChartBarIcon },
+]
+
+export const STATISTICS_MODES = [
+    { label: 'График', key: 'line', icon: ArrowTrendingUpIcon },
+    { label: 'Круговая диаграмма', key: 'pie', icon: QuestionMarkCircleIcon },
+    { label: 'Список', key: 'list', icon: ListBulletIcon },
 ]
 
 export const BUTTON_TYPES = [
