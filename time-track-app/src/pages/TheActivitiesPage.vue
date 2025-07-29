@@ -1,25 +1,40 @@
 <script setup>
-import { defineProps } from 'vue'
-import { formatTime, formatTimestamp } from '../functions'
+import { ref, computed } from 'vue'
+import { getActivitiesForDate } from '../functions'
+import { startOfDay } from 'date-fns'
+
 import ThePageTitle from '../components/UI/ThePageTitle.vue'
 import ActivityItem from '../components/ActivityItem.vue'
+import TheDaySwitch from '../components/TheDaySwitch.vue'
+import TheSelectedDayText from '../components/TheSelectedDayText.vue'
 
 const props = defineProps({
 	activities: {
 		type: Array,
-		default: () => [],
+		required: true,
 	},
 })
+
+const todayDate = startOfDay(new Date())
+const selectedDate = ref(todayDate)
+
+function setDate(date) {
+	selectedDate.value = date
+}
+
+const filteredActivities = computed(() =>
+	getActivitiesForDate(props.activities, selectedDate.value)
+)
 </script>
 
 <template>
-	<div class="p-8 bg-gray-100 min-h-screen">
-
+	<div class="relative bg-gray-100 min-h-screen p-8 pb-24">
 		<ThePageTitle>Активности</ThePageTitle>
-
-		<div v-if="activities.length" class="space-y-6">
-			<ActivityItem v-for="act in activities" :key="act.id" :activity="act" />
+		<TheSelectedDayText :selectedDate="selectedDate" />
+		<div v-if="filteredActivities.length" class="space-y-6">
+			<ActivityItem v-for="act in filteredActivities" :key="act.id" :activity="act" />
 		</div>
-		<div v-else class="text-gray-500">Нет завершённых активностей.</div>
+		<div v-else class="text-gray-500 text-lg">Нет активностей за выбранную дату.</div>
+		<TheDaySwitch @update:day="setDate" :selectedDate="selectedDate" />
 	</div>
 </template>

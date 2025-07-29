@@ -13,7 +13,6 @@ defineProps({
 	<div
 		class="bg-gradient-to-br from-white to-gray-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
 	>
-		<!-- Заголовок -->
 		<div class="flex items-center justify-between mb-6">
 			<div class="flex items-center gap-4">
 				<div

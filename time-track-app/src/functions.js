@@ -1,4 +1,4 @@
-import { format } from 'date-fns'
+import { isSameDay, format, startOfDay } from 'date-fns'
 
 export function formatTime(sec) {
 	const h = Math.floor(sec / 3600)
@@ -13,4 +13,19 @@ export function formatTime(sec) {
 
 export function formatTimestamp(timestamp) {
 	return format(new Date(timestamp), 'HH:mm:ss')
+}
+
+export function label(date, todayDate = startOfDay(new Date())) {
+	return isSameDay(date, todayDate) ? 'Сегодня' : format(date, 'dd.MM')
+}
+
+export function getActivitiesForDate(activities, date) {
+	return activities
+		.map((act) => ({
+			...act,
+			intervals: act.intervals.filter((iv) =>
+				isSameDay(new Date(iv.start), date)
+			),
+		}))
+		.filter((act) => act.intervals.length > 0)
 }
