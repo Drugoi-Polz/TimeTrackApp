@@ -15,6 +15,6 @@ import { items } from "../constans"
 				:label="item.label"
 			/>
 		</nav>
-		<div class="p-6 text-gray-400 text-sm">version: 0.1</div>
+		<div class="p-6 text-gray-400 text-sm"><strong>Project for Alkona</strong><p>by Drugoi-Polz 2025</p></div>
 	</aside>
 </template>

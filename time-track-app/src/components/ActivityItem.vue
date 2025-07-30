@@ -1,5 +1,6 @@
 <script setup>
 import { formatTime, formatTimestamp } from '../functions'
+import BaseTimeView from './UI/BaseTimeView.vue';
 
 defineProps({
 	activity: {
@@ -72,11 +73,7 @@ defineProps({
 						formatTimestamp(interval.end)
 					}}</span>
 				</div>
-				<div
-					class="font-mono text-lg font-bold text-gray-900 bg-gray-300 px-4 py-2 rounded-lg"
-				>
-					{{ formatTime(interval.duration) }}
-				</div>
+				<BaseTimeView :time="formatTime(interval.duration)"/>
 			</li>
 		</ul>
 	</div>

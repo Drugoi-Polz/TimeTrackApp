@@ -1,22 +1,19 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { startOfDay } from 'date-fns'
-import { getActivitiesForDate, summarizeByTask } from '../functions'
+import { getActivitiesForDate } from '../functions'
 import { STATISTICS_MODES } from '../constans'
 
 import ThePageTitle from '../components/UI/ThePageTitle.vue'
 import TheDaySwitch from '../components/TheDaySwitch.vue'
-import TheSelectedDayText from '../components/TheSelectedDayText.vue'
 import IconTextButton from '../components/UI/IconTextButton.vue'
 import TheListStatistics from '../components/TheListStatistics.vue'
 import PieCharts from '../components/charts/PieCharts.vue'
 import BarChart from '../components/charts/BarChart.vue'
+import DoubleText from '../components/UI/DoubleText.vue'
 
 const props = defineProps({
-	activities: {
-		type: Array,
-		required: true,
-	},
+	activities: Array
 })
 
 const todayDate = startOfDay(new Date())
@@ -29,35 +26,79 @@ const setDate = (date) => {
 }
 
 const dailyActivities = computed(() => getActivitiesForDate(props.activities, selectedDate.value))
-
-const summary = computed(() => summarizeByTask(dailyActivities.value))
 </script>
 
 <template>
-	<div class="relative bg-gray-100 min-h-screen p-8 pb-24">
-		<ThePageTitle>Статистика</ThePageTitle>
-		<TheSelectedDayText :selectedDate="selectedDate" />
+	<div class="bg-gray-100 min-h-screen">
+		<div class="max-w-7xl mx-auto p-6 lg:p-8">
 
-		<div class="mt-10 flex items-center justify-around gap-4 mx-40">
-			<IconTextButton
-				v-for="mode in STATISTICS_MODES"
-				:key="mode.key"
-				:text="mode.label"
-				:icon="mode.icon"
-				:modeKey="mode.key"
-				:activeMode="viewMode"
-				@click="viewMode = mode.key"
-			/>
+			<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+				<ThePageTitle>Статистика</ThePageTitle>
+				<DoubleText
+					label="Выбранная дата"
+					:value="selectedDate.toLocaleDateString()"
+					class="mt-4 sm:mt-0"
+				/>
+			</div>
+
+			<div class="mt-6 flex gap-3">
+				<IconTextButton
+					v-for="mode in STATISTICS_MODES"
+					:key="mode.key"
+					:text="mode.label"
+					:icon="mode.icon"
+					:modeKey="mode.key"
+					:activeMode="viewMode"
+					@click="viewMode = mode.key"
+				/>
+			</div>
+
+			<div class="mt-8">
+				<transition name="fade" mode="out-in">
+
+					<TheListStatistics
+						v-if="viewMode === 'list' && dailyActivities.length"
+						:activities="dailyActivities"
+						key="list"
+					/>
+
+					<div
+						v-else-if="viewMode === 'pie' && dailyActivities.length"
+						class="grid justify-center"
+						key="pie"
+					>
+						<PieCharts :data="dailyActivities" />
+					</div>
+
+
+					<div
+						v-else-if="viewMode === 'line' && dailyActivities.length"
+						class="grid justify-center"
+						key="bar"
+					>
+						<BarChart :data="dailyActivities" />
+					</div>
+
+
+					<div
+						v-else
+						class="flex flex-col items-center justify-center text-gray-500 mt-16 space-y-4"
+						key="empty"
+					>
+						<p class="text-lg font-medium">Нет статистики за выбранную дату</p>
+						<p class="text-sm">Попробуйте выбрать другую дату внизу.</p>
+					</div>
+				</transition>
+			</div>
+
+
+			<div class="mt-10">
+				<TheDaySwitch
+					@update:day="setDate"
+					:selectedDate="selectedDate"
+					:todayDate="todayDate"
+				/>
+			</div>
 		</div>
-
-		<TheListStatistics v-show="viewMode == 'list'" :activities="dailyActivities" />
-		<div v-show="viewMode === 'pie'" class="mx-150 mt-20">
-            <PieCharts :data="dailyActivities" />
-        </div>
-		<div v-show="viewMode === 'line'" class="mx-150 mt-20">
-            <BarChart :data="dailyActivities" />
-        </div>
-
-		<TheDaySwitch @update:day="setDate" :selectedDate="selectedDate" :todayDate="todayDate" />
 	</div>
 </template>

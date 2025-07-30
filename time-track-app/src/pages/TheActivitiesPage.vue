@@ -6,7 +6,7 @@ import { startOfDay } from 'date-fns'
 import ThePageTitle from '../components/UI/ThePageTitle.vue'
 import ActivityItem from '../components/ActivityItem.vue'
 import TheDaySwitch from '../components/TheDaySwitch.vue'
-import TheSelectedDayText from '../components/TheSelectedDayText.vue'
+import DoubleText from '../components/UI/DoubleText.vue'
 
 const props = defineProps({
 	activities: {
@@ -30,7 +30,7 @@ const filteredActivities = computed(() =>
 <template>
 	<div class="relative bg-gray-100 min-h-screen p-8 pb-24">
 		<ThePageTitle>Активности</ThePageTitle>
-		<TheSelectedDayText :selectedDate="selectedDate" />
+		<DoubleText :label="'Выбранная дата'" :value="selectedDate.toLocaleDateString()" class="mb-4"/>
 		<div v-if="filteredActivities.length" class="space-y-6">
 			<ActivityItem v-for="act in filteredActivities" :key="act.id" :activity="act" />
 		</div>

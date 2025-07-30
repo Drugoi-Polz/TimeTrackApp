@@ -1,14 +1,12 @@
 import { isSameDay, format, startOfDay } from 'date-fns'
 
-export function formatTime(sec) {
-	const h = Math.floor(sec / 3600)
-		.toString()
-		.padStart(2, '0')
-	const m = Math.floor((sec % 3600) / 60)
-		.toString()
-		.padStart(2, '0')
-	const s = (sec % 60).toString().padStart(2, '0')
-	return `${h}:${m}:${s}`
+export function formatTime(seconds) {
+	const hrs = Math.floor(seconds / 3600)
+	const mins = Math.floor((seconds % 3600) / 60)
+	const secs = seconds % 60
+	if (hrs > 0) return `${hrs}ч ${mins}м`
+	if (mins > 0) return `${mins}м ${secs}с`
+	return `${secs}с`
 }
 
 export function formatTimestamp(timestamp) {
@@ -39,4 +37,8 @@ export function summarizeByTask(activities) {
 		}
 	})
 	return Array.from(map.values())
+}
+
+export function toMinutes(seconds) {
+	return Math.round(seconds / 60)
 }
