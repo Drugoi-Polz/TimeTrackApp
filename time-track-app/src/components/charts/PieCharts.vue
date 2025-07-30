@@ -72,7 +72,7 @@ const chartOptions = {
 </script>
 
 <template>
-	<div class="flex flex-col h-full">
+	<div v-if="data && data.length" class="flex flex-col h-full">
 
 		<div class="h-128 flex items-center justify-center">
 			<Pie :data="chartData" :options="chartOptions" />
@@ -107,4 +107,5 @@ const chartOptions = {
 			</div>
 		</div>
 	</div>
+	<div v-else class="text-gray-500 text-5xl flex justify-center mt-100">Нет статистики за выбранную дату</div>
 </template>

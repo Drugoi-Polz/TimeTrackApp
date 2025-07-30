@@ -1,38 +1,41 @@
-import { HomeIcon, ClockIcon, ChartBarIcon, ArrowTrendingUpIcon, QuestionMarkCircleIcon, ListBulletIcon } from '@heroicons/vue/24/outline'
+import {
+	HomeIcon,
+	ClockIcon,
+	ChartBarIcon,
+	ArrowTrendingUpIcon,
+	QuestionMarkCircleIcon,
+	ListBulletIcon,
+} from '@heroicons/vue/24/outline'
 
-export const DEFAULT_BUTTON = 'default';
-export const PRIMARY_BUTTON = 'primary';
-export const DANGER_BUTTON = 'danger';
-export const SUCCESS_BUTTON = 'success';
+export const DEFAULT_BUTTON = 'default'
+export const PRIMARY_BUTTON = 'primary'
+export const DANGER_BUTTON = 'danger'
+export const SUCCESS_BUTTON = 'success'
 
-export const TEXT_BUTTON_CONTENT = 'text';
-export const ICON_BUTTON_CONTENT = 'icon';
+export const TEXT_BUTTON_CONTENT = 'text'
+export const ICON_BUTTON_CONTENT = 'icon'
 
-export const MAX_TIMER_SECONDS = 8 * 3600;
+export const MAX_TIMER_SECONDS = 8 * 3600
 
 export const items = [
-    { label: 'Задачи', to: '/tasks', icon: HomeIcon },
-    { label: 'Активности', to: '/activities', icon: ClockIcon },
-    { label: 'Статистика', to: '/statistics', icon: ChartBarIcon },
+	{ label: 'Задачи', to: '/tasks', icon: HomeIcon },
+	{ label: 'Активности', to: '/activities', icon: ClockIcon },
+	{ label: 'Статистика', to: '/statistics', icon: ChartBarIcon },
 ]
 
 export const STATISTICS_MODES = [
-    { label: 'График', key: 'line', icon: ArrowTrendingUpIcon },
-    { label: 'Круговая диаграмма', key: 'pie', icon: QuestionMarkCircleIcon },
-    { label: 'Список', key: 'list', icon: ListBulletIcon },
+	{ label: 'График', key: 'line', icon: ArrowTrendingUpIcon },
+	{ label: 'Список', key: 'list', icon: ListBulletIcon },
+	{ label: 'Круговая диаграмма', key: 'pie', icon: QuestionMarkCircleIcon },
 ]
 
-export const BUTTON_TYPES = [
-	PRIMARY_BUTTON, DANGER_BUTTON, SUCCESS_BUTTON, DEFAULT_BUTTON
-]
+export const BUTTON_TYPES = [PRIMARY_BUTTON, DANGER_BUTTON, SUCCESS_BUTTON, DEFAULT_BUTTON]
 
-export const BUTTON_CONTENT_TYPES = [
-    TEXT_BUTTON_CONTENT, ICON_BUTTON_CONTENT
-]
+export const BUTTON_CONTENT_TYPES = [TEXT_BUTTON_CONTENT, ICON_BUTTON_CONTENT]
 
 export const STORAGE_KEYS = {
 	tasks: 'myapp_tasks',
 	templates: 'myapp_templates',
 	categories: 'myapp_categories',
-    activities: 'myapp_activities'
+	activities: 'myapp_activities',
 }
