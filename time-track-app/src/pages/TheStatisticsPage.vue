@@ -11,9 +11,10 @@ import TheListStatistics from '../components/TheListStatistics.vue'
 import PieCharts from '../components/charts/PieCharts.vue'
 import BarChart from '../components/charts/BarChart.vue'
 import DoubleText from '../components/UI/DoubleText.vue'
+import EmptyDataMessage from '../components/EmptyDataMessage.vue'
 
 const props = defineProps({
-	activities: Array
+	activities: Array,
 })
 
 const todayDate = startOfDay(new Date())
@@ -31,7 +32,6 @@ const dailyActivities = computed(() => getActivitiesForDate(props.activities, se
 <template>
 	<div class="bg-gray-100 min-h-screen">
 		<div class="max-w-7xl mx-auto p-6 lg:p-8">
-
 			<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
 				<ThePageTitle>Статистика</ThePageTitle>
 				<DoubleText
@@ -55,7 +55,6 @@ const dailyActivities = computed(() => getActivitiesForDate(props.activities, se
 
 			<div class="mt-8">
 				<transition name="fade" mode="out-in">
-
 					<TheListStatistics
 						v-if="viewMode === 'list' && dailyActivities.length"
 						:activities="dailyActivities"
@@ -70,7 +69,6 @@ const dailyActivities = computed(() => getActivitiesForDate(props.activities, se
 						<PieCharts :data="dailyActivities" />
 					</div>
 
-
 					<div
 						v-else-if="viewMode === 'line' && dailyActivities.length"
 						class="grid justify-center"
@@ -79,18 +77,11 @@ const dailyActivities = computed(() => getActivitiesForDate(props.activities, se
 						<BarChart :data="dailyActivities" />
 					</div>
 
-
-					<div
-						v-else
-						class="flex flex-col items-center justify-center text-gray-500 mt-16 space-y-4"
-						key="empty"
-					>
-						<p class="text-lg font-medium">Нет статистики за выбранную дату</p>
-						<p class="text-sm">Попробуйте выбрать другую дату внизу.</p>
+					<div v-else key="empty">
+						<EmptyDataMessage />
 					</div>
 				</transition>
 			</div>
-
 
 			<div class="mt-10">
 				<TheDaySwitch

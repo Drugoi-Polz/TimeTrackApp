@@ -1,5 +1,6 @@
 import { formatTime } from '../../functions'
 
+//Данные для столбчатого графика
 export function getBarChartData(data, toMinutes) {
 	return {
 		labels: data.map((item) => item.title),
@@ -16,7 +17,7 @@ export function getBarChartData(data, toMinutes) {
 		],
 	}
 }
-
+// Данные для круговой диаграммы
 export function getPieChartData(data) {
 	return {
 		labels: data.map((item) => item.title),
@@ -31,6 +32,7 @@ export function getPieChartData(data) {
 	}
 }
 
+// Легенда
 export function getLegendItems({ data, chartData, format = 'minutes' }) {
 	const values = chartData.datasets[0].data
 	const total = values.reduce((a, b) => a + b, 0)
@@ -41,9 +43,10 @@ export function getLegendItems({ data, chartData, format = 'minutes' }) {
 			title: item.title,
 			color: item.color || '#9CA3AF',
 		}
+		// TO DO: Привести к 1 формату
 		legend.value = format === 'seconds' ? formatTime(val) : `${val}м`
-		const pct = total ? Math.round((val / total) * 100) : 0
-		legend.percentage = `${pct}%`
+		const procent = total ? Math.round((val / total) * 100) : 0
+		legend.percentage = `${procent}%`
 		return legend
 	})
 }

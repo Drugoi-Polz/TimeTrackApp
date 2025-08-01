@@ -1,10 +1,9 @@
 <script setup>
-import { defineProps, computed } from 'vue'
 import { TrashIcon, PencilIcon } from '@heroicons/vue/24/outline'
-
-import BaseButton from './UI/BaseButton.vue'
 import { DANGER_BUTTON, ICON_BUTTON_CONTENT, PRIMARY_BUTTON } from '../constans'
 import { isTaskValid } from '../validators'
+
+import BaseButton from './UI/BaseButton.vue'
 import Timer from './Timer.vue'
 
 const props = defineProps({
@@ -13,27 +12,31 @@ const props = defineProps({
 	validator: isTaskValid,
 })
 const emit = defineEmits(['edit', 'delete', 'start', 'stop'])
-
-const cardStyle = computed(() => `background-color: ${props.task.color || '#b2dfdb'}`)
-
-function updateElapsed(newVal) {
-	emit('update', { ...props.task, elapsed: newVal })
-}
 </script>
 
 <template>
-	<div class="rounded-xl flex justify-between shadow p-4" :style="cardStyle">
+	<div class="rounded-xl flex justify-between shadow-2xs p-4 bg-white hover:shadow-xl hover:shadow-gray-200">
 		<div class="flex items-start gap-4 flex-1 min-w-0">
 			<div
-				class="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center shadow shrink-0"
-			>
-				<component :is="task.icon" class="h-6 w-6 text-gray-900" />
-			</div>
+					class="h-10 w-10 bg-white rounded-full flex items-center justify-center shadow-inner"
+					:style="{ backgroundColor: task.color }"
+				>
+					<component
+						:is="task.icon"
+						class="h-6 w-6 text-white"
+					/>
+				</div>
 
 			<div class="min-w-0 flex-1">
-				<h2 class="text-xl font-semibold text-black truncate">{{ task.title }}</h2>
+				<h2
+					class="text-2xl font-semibold text-gray-900 hover:text-teal-600 transition-colors duration-200"
+				>
+					{{ task.title }}
+				</h2>
+				<span class="text-sm text-gray-500 uppercase tracking-wide"
+					>#{{ task.category }}</span
+				>
 				<p class="text-black/90 text-sm mt-1 line-clamp-2">{{ task.description }}</p>
-				<div class="text-xs text-black/70 mt-2 italic truncate">#{{ task.category }}</div>
 			</div>
 		</div>
 

@@ -90,7 +90,7 @@ onMounted(() => {
 <template>
 	<div class="flex items-center gap-15">
 		<div
-			class="font-semibold text-2xl w-min-100 w-35 shrink-0 text-center bg-gray-200 p-2 rounded"
+			class="font-semibold text-2xl w-min-100 w-35 shrink-0 text-center p-2"
 		>
 			{{ formatTime(elapsed) }}
 		</div>
