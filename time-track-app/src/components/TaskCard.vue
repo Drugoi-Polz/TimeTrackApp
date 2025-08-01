@@ -49,14 +49,12 @@ const emit = defineEmits(['edit', 'delete', 'start', 'stop'])
 			></Timer>
 			<BaseButton
 				:contentType="ICON_BUTTON_CONTENT"
-				:variant="PRIMARY_BUTTON"
 				@click="$emit('edit', task)"
 			>
 				<PencilIcon />
 			</BaseButton>
 			<BaseButton
 				:contentType="ICON_BUTTON_CONTENT"
-				:variant="DANGER_BUTTON"
 				@click="$emit('delete', task)"
 			>
 				<TrashIcon />
