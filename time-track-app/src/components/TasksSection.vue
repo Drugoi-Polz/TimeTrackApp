@@ -12,13 +12,13 @@ const emit = defineEmits(['create', 'edit', 'delete', 'start', 'stop'])
 </script>
 
 <template>
-	<div class="col-span-2 bg-white rounded-2xl shadow-xl shadow-gray-300 p-4">
+	<div class="col-span-2 bg-gradient-to-br from-gray-100 to-blue-50 rounded-2xl shadow-xl shadow-gray-300 p-4">
 		<div class="flex justify-end mb-4">
 			<BaseButton :variant="DEFAULT_BUTTON" @click="emit('create')">
 				Создать задачу
 			</BaseButton>
 		</div>
-		<div class="flex flex-col gap-4">
+		<div class="flex flex-col gap-6">
 			<TaskCard
 				v-for="task in tasks"
 				:key="task.id"

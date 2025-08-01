@@ -1,9 +1,10 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue'
-import BaseButton from './UI/BaseButton.vue'
 import { TrashIcon } from '@heroicons/vue/24/outline'
 import { DANGER_BUTTON, ICON_BUTTON_CONTENT } from '../constans'
 import { isTemplateValid } from '../validators'
+
+import BaseButton from './UI/BaseButton.vue'
 
 const props = defineProps({
 	template: {
@@ -18,16 +19,20 @@ const emit = defineEmits(['delete'])
 
 <template>
 	<div
-		class="flex items-center justify-between p-3 rounded-xl shadow cursor-pointer"
-		:style="{ backgroundColor: template.color || '#f3f4f6' }"
+		class="flex items-center justify-between p-3 rounded-xl shadow cursor-pointer bg-white"
 	>
 		<div class="flex items-center gap-3 flex-1 min-w-0">
-			<div class="bg-white rounded-full p-1 shadow shrink-0">
-				<component :is="template.icon" class="w-6 h-6 text-gray-700" />
+			<div
+				class="h-10 w-10 bg-white rounded-full flex items-center justify-center shadow-inner"
+				:style="{ backgroundColor: template.color }"
+			>
+				<component :is="template.icon" class="h-6 w-6 text-white" />
 			</div>
-			<span class="text-md font-medium text-white truncate">
-				{{ template.category }}
-			</span>
+			<h2
+					class="text-2xl font-semibold text-gray-900 hover:text-teal-600 transition-colors duration-200"
+				>
+					{{ template.category }}
+				</h2>
 		</div>
 
 		<BaseButton
