@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { isTaskValid } from '../validators'
-import { DEFAULT_BUTTON, PRIMARY_BUTTON } from '../constans'
+import { PRIMARY_BUTTON, SUCCESS_BUTTON } from '../constans'
 import { iconOptions } from '../iconsList'
 
 import BaseButton from './UI/BaseButton.vue'
@@ -104,7 +104,7 @@ function reset() {
 
 			<div class="flex justify-end gap-2">
 				<BaseButton @click="reset" :variant="PRIMARY_BUTTON" >Отмена</BaseButton>
-				<BaseButton :variant="DEFAULT_BUTTON" @click="handleSave">Сохранить</BaseButton>
+				<BaseButton :variant="SUCCESS_BUTTON" @click="handleSave">Сохранить</BaseButton>
 			</div>
 		</div>
 	</div>

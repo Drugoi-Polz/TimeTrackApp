@@ -1,8 +1,9 @@
 <script setup>
 import { ref, onBeforeUnmount, onMounted } from 'vue'
-import { PlayIcon, StopIcon } from '@heroicons/vue/24/outline'
+import { PlayIcon } from '@heroicons/vue/24/outline'
+import { StopIcon } from '@heroicons/vue/24/solid'
 import BaseButton from './UI/BaseButton.vue'
-import { DANGER_BUTTON, SUCCESS_BUTTON, ICON_BUTTON_CONTENT, MAX_TIMER_SECONDS } from '../constans'
+import { ICON_BUTTON_CONTENT, MAX_TIMER_SECONDS } from '../constans'
 
 const props = defineProps({
 	initial: { type: Number, default: 0 },
@@ -97,7 +98,7 @@ onMounted(() => {
 
 		<BaseButton
 			:contentType="ICON_BUTTON_CONTENT"
-			:variant="isRunning ? DANGER_BUTTON : SUCCESS_BUTTON"
+			:class="isRunning? 'text-red-400' : ''"
 			@click="toggle"
 		>
 			<component :is="isRunning ? StopIcon : PlayIcon" />
