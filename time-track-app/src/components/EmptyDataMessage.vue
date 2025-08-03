@@ -3,11 +3,11 @@ import { NoSymbolIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
-	<div class="flex flex-col items-center justify-center text-gray-500 mt-16 space-y-4">
-		<p class="text-lg font-medium">Нет данных на выбранную дату</p>
-		<p class="text-sm">Попробуйте выбрать другую дату внизу.</p>
-		<div class="flex flex-col justify-center items-center">
-			<NoSymbolIcon class="h-50" />
+	<div class="absolute inset-0 flex flex-col items-center justify-center">
+		<div class="p-8 bg-white rounded-full shadow-2xl mb-6">
+			<NoSymbolIcon class="w-48 h-48 text-gray-600 animate-pulse" />
 		</div>
+		<p class="text-3xl font-semibold text-gray-500 mb-2">Нет данных</p>
+		<p class="text-xl text-gray-400">Попробуйте выбрать другую дату</p>
 	</div>
 </template>

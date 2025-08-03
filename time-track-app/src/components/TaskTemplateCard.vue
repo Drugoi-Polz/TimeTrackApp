@@ -1,8 +1,9 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue'
+import { defineProps, defineEmits, computed, ref } from 'vue'
 import { TrashIcon } from '@heroicons/vue/24/outline'
 import { DEFAULT_BUTTON, ICON_BUTTON_CONTENT } from '../constans'
 import { isTemplateValid } from '../validators'
+import { getCardStyles } from '../functions'
 
 import BaseButton from './UI/BaseButton.vue'
 
@@ -15,11 +16,18 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['delete'])
+
+const isHovered = ref(false)
+
+const cardStyle = computed(() => getCardStyles(props.template.color, isHovered.value))
 </script>
 
 <template>
 	<div
-		class="flex items-center justify-between p-3 rounded-xl shadow cursor-pointer bg-white"
+		class="rounded-xl flex justify-between p-4 bg-white transition"
+		:style="cardStyle" 
+		@mouseenter="isHovered = true"
+		@mouseleave="isHovered = false"
 	>
 		<div class="flex items-center gap-3 flex-1 min-w-0">
 			<div

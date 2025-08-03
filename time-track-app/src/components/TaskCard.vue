@@ -1,31 +1,41 @@
 <script setup>
+import { ref, computed } from 'vue'
 import { TrashIcon, PencilIcon } from '@heroicons/vue/24/outline'
-import { DANGER_BUTTON, ICON_BUTTON_CONTENT, PRIMARY_BUTTON } from '../constans'
+import { DEFAULT_BUTTON, ICON_BUTTON_CONTENT } from '../constans'
 import { isTaskValid } from '../validators'
 
 import BaseButton from './UI/BaseButton.vue'
 import Timer from './Timer.vue'
+import { getCardStyles } from '../functions'
 
 const props = defineProps({
-	task: Object,
-	required: true,
-	validator: isTaskValid,
+	task: {
+		type: Object,
+		required: true,
+		validator: isTaskValid,
+	},
 })
 const emit = defineEmits(['edit', 'delete', 'start', 'stop'])
+
+const isHovered = ref(false)
+
+const cardStyle = computed(() => getCardStyles(props.task.color, isHovered.value))
 </script>
 
 <template>
-	<div class="rounded-xl flex justify-between shadow-2xs p-4 bg-white hover:shadow-xl hover:shadow-gray-200">
+	<div
+		class="rounded-xl flex justify-between p-4 bg-white transition"
+		:style="cardStyle"
+		@mouseenter="isHovered = true"
+		@mouseleave="isHovered = false"
+	>
 		<div class="flex items-start gap-4 flex-1 min-w-0">
 			<div
-					class="h-10 w-10 bg-white rounded-full flex items-center justify-center shadow-inner"
-					:style="{ backgroundColor: task.color }"
-				>
-					<component
-						:is="task.icon"
-						class="h-6 w-6 text-white"
-					/>
-				</div>
+				class="h-10 w-10 bg-white rounded-full flex items-center justify-center shadow-inner"
+				:style="{ backgroundColor: task.color }"
+			>
+				<component :is="task.icon" class="h-6 w-6 text-white" />
+			</div>
 
 			<div class="min-w-0 flex-1">
 				<h2
@@ -49,12 +59,14 @@ const emit = defineEmits(['edit', 'delete', 'start', 'stop'])
 			></Timer>
 			<BaseButton
 				:contentType="ICON_BUTTON_CONTENT"
+				:variant="DEFAULT_BUTTON"
 				@click="$emit('edit', task)"
 			>
 				<PencilIcon />
 			</BaseButton>
 			<BaseButton
 				:contentType="ICON_BUTTON_CONTENT"
+				:variant="DEFAULT_BUTTON"
 				@click="$emit('delete', task)"
 			>
 				<TrashIcon />

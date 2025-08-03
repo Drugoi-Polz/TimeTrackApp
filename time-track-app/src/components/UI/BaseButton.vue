@@ -2,10 +2,10 @@
 import { DANGER_BUTTON, DEFAULT_BUTTON, PRIMARY_BUTTON, SUCCESS_BUTTON } from '../../constans'
 
 const variantClasses = {
-	[SUCCESS_BUTTON]: 'bg-teal-600 hover:bg-teal-700',
+	[SUCCESS_BUTTON]: 'bg-teal-600 hover:bg-teal-700 opacity-70',
 	[PRIMARY_BUTTON]: 'bg-indigo-300 hover:bg-indigo-400 text-gray-400',
 	[DANGER_BUTTON]: 'bg-red-300 hover:bg-red-400 text-gray-400',
-	[DEFAULT_BUTTON]: 'text-gray-600 bg-white hover:bg-gray-400 rounded-2xl',
+	[DEFAULT_BUTTON]: 'text-gray-600 bg-white hover:bg-gray-300 rounded-2xl',
 }
 </script>
 

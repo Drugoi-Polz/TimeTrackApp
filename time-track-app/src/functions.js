@@ -10,7 +10,7 @@ export function formatTime(seconds) {
 	return `${secs}с`
 }
 
-// форматирование к точному времени 
+// форматирование к точному времени
 export function formatTimestamp(timestamp) {
 	return format(new Date(timestamp), 'HH:mm:ss')
 }
@@ -38,4 +38,34 @@ export function toMinutes(seconds) {
 // вся длительность активности
 export function totalDuration(intervals) {
 	return intervals.reduce((sum, i) => sum + i.duration, 0)
+}
+
+// парсинг цвета из hex в rgb
+export function hexToRgba(hex, alpha = 1) {
+	const h = hex.replace('#', '')
+	const bigint = parseInt(
+		h.length === 3
+			? h
+					.split('')
+					.map((x) => x + x)
+					.join('')
+			: h,
+		16
+	)
+	const r = (bigint >> 16) & 255
+	const g = (bigint >> 8) & 255
+	const b = bigint & 255
+	return `rgba(${r}, ${g}, ${b}, ${alpha})`
+}
+
+export function getCardStyles(color, hovered, alpha = 0.4) {
+	const c = color || '#cccccc'
+	const baseShadow = `0 2px 4px ${hexToRgba(c, alpha)}`
+	const hoverShadow = `0 4px 12px ${hexToRgba(c, alpha)}`
+
+	return {
+		border: `1px solid ${hexToRgba(c, alpha)}`,
+		boxShadow: hovered ? hoverShadow : baseShadow,
+		transition: 'box-shadow 0.2s ease',
+	}
 }

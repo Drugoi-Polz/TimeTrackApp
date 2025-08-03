@@ -27,10 +27,20 @@ const setDate = (date) => {
 }
 
 const dailyActivities = computed(() => getActivitiesForDate(props.activities, selectedDate.value))
+
+const currentView = computed(() => {
+	if (!dailyActivities.value.length) return EmptyDataMessage
+
+	if (viewMode.value === 'list') return TheListStatistics
+	if (viewMode.value === 'pie') return PieCharts
+	if (viewMode.value === 'line') return BarChart
+
+	return EmptyDataMessage
+})
 </script>
 
 <template>
-	<div class="bg-gray-100 min-h-screen">
+	<div class="bg-gray-100 min-h-screen relative">
 		<div class="max-w-7xl mx-auto p-6 lg:p-8">
 			<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
 				<ThePageTitle>Статистика</ThePageTitle>
@@ -55,31 +65,12 @@ const dailyActivities = computed(() => getActivitiesForDate(props.activities, se
 
 			<div class="mt-8">
 				<transition name="fade" mode="out-in">
-					<TheListStatistics
-						v-if="viewMode === 'list' && dailyActivities.length"
+					<component
+						:is="currentView"
 						:activities="dailyActivities"
-						key="list"
+						:data="dailyActivities"
+						key="view-mode"
 					/>
-
-					<div
-						v-else-if="viewMode === 'pie' && dailyActivities.length"
-						class="grid justify-center"
-						key="pie"
-					>
-						<PieCharts :data="dailyActivities" />
-					</div>
-
-					<div
-						v-else-if="viewMode === 'line' && dailyActivities.length"
-						class="grid justify-center"
-						key="bar"
-					>
-						<BarChart :data="dailyActivities" />
-					</div>
-
-					<div v-else key="empty">
-						<EmptyDataMessage />
-					</div>
 				</transition>
 			</div>
 
