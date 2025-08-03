@@ -1,5 +1,5 @@
 import { ref, watch, onMounted } from 'vue'
-import { iconOptions } from '../iconsList' // 🔹 импортируем список иконок
+import { iconOptions } from '../iconsList'
 
 export function usePersistentState(key, defaultValue = []) {
 	const state = ref(defaultValue)

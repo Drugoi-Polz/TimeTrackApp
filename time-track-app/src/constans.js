@@ -35,6 +35,7 @@ export const BUTTON_CONTENT_TYPES = [TEXT_BUTTON_CONTENT, ICON_BUTTON_CONTENT]
 
 export const STORAGE_KEYS = {
 	tasks: 'myapp_tasks',
+	activeTasks:'myapp_activeTasks',
 	templates: 'myapp_templates',
 	categories: 'myapp_categories',
 	activities: 'myapp_activities',

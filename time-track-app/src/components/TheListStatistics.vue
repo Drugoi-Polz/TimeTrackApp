@@ -18,7 +18,7 @@ const props = defineProps({
 		<div
 			v-for="activity in activities"
 			:key="activity.id"
-			class="relative p-6 bg-white rounded-xl shadow border border-gray-200 hover:shadow-lg transition mt-6"
+			class="p-6 bg-white rounded-xl shadow border border-gray-200 hover:shadow-lg transition mt-6"
 		>
 			<div class="flex justify-between items-center mb-4">
 				<h2 class="text-2xl font-bold text-gray-800">{{ activity.title }}</h2>
