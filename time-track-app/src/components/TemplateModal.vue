@@ -1,12 +1,13 @@
 <script setup>
 import { ref } from 'vue'
+import { PRIMARY_BUTTON, SUCCESS_BUTTON } from '../constans'
+import { iconOptions } from '../iconsList'
+import { isTemplateValid } from '../validators'
+
 import BaseInput from './UI/BaseInput.vue'
 import BaseButton from './UI/BaseButton.vue'
 import ThePageTitle from './UI/ThePageTitle.vue'
 import IconsList from './UI/IconsList.vue'
-import { DEFAULT_BUTTON } from '../constans'
-import { iconOptions } from '../iconsList'
-import { isTemplateValid } from '../validators'
 
 const emit = defineEmits(['save', 'close'])
 
@@ -51,8 +52,8 @@ function handleSave() {
 			<IconsList v-model="iconName" />
 
 			<div class="flex justify-end gap-2">
-				<BaseButton @click="reset">Отмена</BaseButton>
-				<BaseButton :variant="DEFAULT_BUTTON" @click="handleSave">Сохранить</BaseButton>
+				<BaseButton @click="reset" :variant="PRIMARY_BUTTON">Отмена</BaseButton>
+				<BaseButton :variant="SUCCESS_BUTTON" @click="handleSave">Сохранить</BaseButton>
 			</div>
 		</div>
 	</div>

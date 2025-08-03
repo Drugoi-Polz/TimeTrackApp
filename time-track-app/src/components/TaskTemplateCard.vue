@@ -1,7 +1,7 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue'
 import { TrashIcon } from '@heroicons/vue/24/outline'
-import { DANGER_BUTTON, ICON_BUTTON_CONTENT } from '../constans'
+import { DEFAULT_BUTTON, ICON_BUTTON_CONTENT } from '../constans'
 import { isTemplateValid } from '../validators'
 
 import BaseButton from './UI/BaseButton.vue'
@@ -36,7 +36,7 @@ const emit = defineEmits(['delete'])
 		</div>
 
 		<BaseButton
-			:variant="DANGER_BUTTON"
+			:variant="DEFAULT_BUTTON"
 			:contentType="ICON_BUTTON_CONTENT"
 			@click.stop="emit('delete', template)"
 		>

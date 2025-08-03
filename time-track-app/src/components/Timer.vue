@@ -1,8 +1,9 @@
 <script setup>
 import { ref, onBeforeUnmount, onMounted } from 'vue'
-import { PlayIcon, StopIcon } from '@heroicons/vue/24/outline'
+import { PlayIcon } from '@heroicons/vue/24/outline'
+import { StopIcon } from '@heroicons/vue/24/solid'
 import BaseButton from './UI/BaseButton.vue'
-import { DANGER_BUTTON, SUCCESS_BUTTON, ICON_BUTTON_CONTENT, MAX_TIMER_SECONDS } from '../constans'
+import { ICON_BUTTON_CONTENT, MAX_TIMER_SECONDS } from '../constans'
 
 const props = defineProps({
 	initial: { type: Number, default: 0 },
@@ -52,7 +53,7 @@ function stop() {
 	const endTime = Date.now()
 	emit('stop', { start: startTime, end: endTime, duration: elapsed.value })
 
-	localStorage.removeItem('activeTask') // <<< очищаем
+	localStorage.removeItem('activeTask')
 	elapsed.value = 0
 }
 
@@ -88,16 +89,16 @@ onMounted(() => {
 </script>
 
 <template>
-	<div class="flex items-center gap-15">
+	<div class="flex items-center gap-2">
 		<div
-			class="font-semibold text-2xl w-min-100 w-35 shrink-0 text-center p-2"
+			class="font-semibold text-2xl text-gray-600 w-min-100 w-35 shrink-0 text-center p-2"
 		>
 			{{ formatTime(elapsed) }}
 		</div>
 
 		<BaseButton
 			:contentType="ICON_BUTTON_CONTENT"
-			:variant="isRunning ? DANGER_BUTTON : SUCCESS_BUTTON"
+			:class="isRunning? 'text-red-400' : ''"
 			@click="toggle"
 		>
 			<component :is="isRunning ? StopIcon : PlayIcon" />
