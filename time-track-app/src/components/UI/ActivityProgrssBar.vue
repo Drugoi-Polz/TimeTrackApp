@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { totalDuration } from '../../functions';
+import { totalDuration } from '../../functions/timeFunctions';
 
 const props = defineProps({
     activities: Array,

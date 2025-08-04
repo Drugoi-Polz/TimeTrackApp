@@ -1,7 +1,7 @@
 <script setup>
-import { formatTime, formatTimestamp } from '../functions'
+import { formatTime, formatTimestamp } from '../../functions/timeFunctions'
 
-import BaseTimeView from './UI/BaseTimeView.vue'
+import BaseTimeView from '../UI/BaseTimeView.vue'
 
 defineProps({
     intervalItem: Object

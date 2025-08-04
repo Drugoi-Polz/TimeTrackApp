@@ -1,9 +1,10 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue'
-import { SUCCESS_BUTTON } from '../constans'
-import TaskTemplateCard from './TaskTemplateCard.vue'
-import BaseButton from './UI/BaseButton.vue'
+import { SUCCESS_BUTTON } from '../../constans'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/outline'
+
+import TaskTemplateCard from './TaskTemplateCard.vue'
+import BaseButton from '../UI/BaseButton.vue'
 
 const props = defineProps({
 	templates: { type: Array, default: () => [] },

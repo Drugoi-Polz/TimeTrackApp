@@ -1,9 +1,10 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue'
-import { SUCCESS_BUTTON } from '../constans'
-import TaskCard from './TaskCard.vue'
-import BaseButton from './UI/BaseButton.vue'
+import { SUCCESS_BUTTON } from '../../constans'
 import { PlusCircleIcon } from '@heroicons/vue/24/outline'
+
+import TaskCard from './TaskCard.vue'
+import BaseButton from '../UI/BaseButton.vue'
 
 const props = defineProps({
 	tasks: { type: Array, default: () => [] },

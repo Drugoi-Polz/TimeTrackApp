@@ -11,7 +11,7 @@ const variantClasses = {
 
 <script setup>
 import { TEXT_BUTTON_CONTENT } from '../../constans'
-import { isButtonTypeValid, isButtonContentTypeValid } from '../../validators'
+import { isButtonTypeValid, isButtonContentTypeValid } from '../../functions/validators'
 
 const props = defineProps({
 	variant: {

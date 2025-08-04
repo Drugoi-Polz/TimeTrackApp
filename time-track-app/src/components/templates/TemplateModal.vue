@@ -1,13 +1,13 @@
 <script setup>
 import { ref } from 'vue'
-import { PRIMARY_BUTTON, SUCCESS_BUTTON } from '../constans'
-import { iconOptions } from '../iconsList'
-import { isTemplateValid } from '../validators'
+import { PRIMARY_BUTTON, SUCCESS_BUTTON } from '../../constans'
+import { iconOptions } from '../../iconsList'
+import { isTemplateValid } from '../../functions/validators'
 
-import BaseInput from './UI/BaseInput.vue'
-import BaseButton from './UI/BaseButton.vue'
-import ThePageTitle from './UI/ThePageTitle.vue'
-import IconsList from './UI/IconsList.vue'
+import BaseInput from '../UI/BaseInput.vue'
+import BaseButton from '../UI/BaseButton.vue'
+import ThePageTitle from '../UI/ThePageTitle.vue'
+import IconsList from '../UI/IconsList.vue'
 
 const emit = defineEmits(['save', 'close'])
 

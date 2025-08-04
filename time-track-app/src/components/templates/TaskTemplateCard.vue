@@ -1,11 +1,11 @@
 <script setup>
 import { defineProps, defineEmits, computed, ref } from 'vue'
 import { TrashIcon } from '@heroicons/vue/24/outline'
-import { DEFAULT_BUTTON, ICON_BUTTON_CONTENT } from '../constans'
-import { isTemplateValid } from '../validators'
-import { getCardStyles } from '../functions'
+import { DEFAULT_BUTTON, ICON_BUTTON_CONTENT } from '../../constans'
+import { isTemplateValid } from '../../functions/validators'
+import { getCardStyles } from '../../functions/timeFunctions'
 
-import BaseButton from './UI/BaseButton.vue'
+import BaseButton from '../UI/BaseButton.vue'
 
 const props = defineProps({
 	template: {

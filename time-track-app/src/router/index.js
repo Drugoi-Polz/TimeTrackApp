@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import TasksPage from "../pages/TheTasksPage.vue";
-import ActivitiesPage from '../pages/TheActivitiesPage.vue';
-import StatisticsPage from '../pages/TheStatisticsPage.vue';
+import TasksPage from '../components/pages/TheTasksPage.vue'
+import ActivitiesPage from '../components/pages/TheActivitiesPage.vue';
+import StatisticsPage from '../components/pages/TheStatisticsPage.vue';
 
 const routes = [
   { path: '/', redirect: '/tasks' },

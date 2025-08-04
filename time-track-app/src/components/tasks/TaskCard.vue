@@ -1,12 +1,12 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { TrashIcon, PencilIcon } from '@heroicons/vue/24/outline'
-import { DEFAULT_BUTTON, ICON_BUTTON_CONTENT } from '../constans'
-import { isTaskValid } from '../validators'
-import { getCardStyles } from '../functions'
+import { DEFAULT_BUTTON, ICON_BUTTON_CONTENT } from '../../constans'
+import { isTaskValid } from '../../functions/validators'
+import { getCardStyles } from '../../functions/timeFunctions'
 
-import BaseButton from './UI/BaseButton.vue'
-import Timer from './Timer.vue'
+import BaseButton from '../UI/BaseButton.vue'
+import Timer from '../UI/Timer.vue'
 
 const props = defineProps({
 	task: {

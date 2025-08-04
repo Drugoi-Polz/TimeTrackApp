@@ -1,14 +1,14 @@
 <script setup>
 import { ref, watch } from 'vue'
-import { isTaskValid } from '../validators'
-import { PRIMARY_BUTTON, SUCCESS_BUTTON } from '../constans'
-import { iconOptions } from '../iconsList'
+import { isTaskValid } from '../../functions/validators'
+import { PRIMARY_BUTTON, SUCCESS_BUTTON } from '../../constans'
+import { iconOptions } from '../../iconsList'
 
-import BaseButton from './UI/BaseButton.vue'
-import SuggestInput from './UI/SuggestInput.vue'
-import BaseInput from './UI/BaseInput.vue'
-import ThePageTitle from './UI/ThePageTitle.vue'
-import IconsList from './UI/IconsList.vue'
+import BaseButton from '../UI/BaseButton.vue'
+import SuggestInput from '../UI/SuggestInput.vue'
+import BaseInput from '../UI/BaseInput.vue'
+import ThePageTitle from '../UI/ThePageTitle.vue'
+import IconsList from '../UI/IconsList.vue'
 
 const props = defineProps({
 	categorySuggestions: {

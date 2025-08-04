@@ -1,7 +1,8 @@
 <script setup>
-import Sidebar from './components/TheSideBar.vue'
 import { usePersistentState } from './composables/usePersistentState'
 import { STORAGE_KEYS } from './constans'
+
+import Sidebar from './components/sidebar/TheSideBar.vue'	
 
 const activities = usePersistentState(STORAGE_KEYS['activities'])
 

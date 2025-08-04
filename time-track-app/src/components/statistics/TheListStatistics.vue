@@ -1,9 +1,9 @@
 <script setup>
-import { formatTime, formatTimestamp, totalDuration } from '../functions'
+import { formatTime, formatTimestamp, totalDuration } from '../../functions/timeFunctions'
 
-import DoubleText from './UI/DoubleText.vue'
-import BaseTimeView from './UI/BaseTimeView.vue'
-import ActivityProgrssBar from './UI/ActivityProgrssBar.vue'
+import DoubleText from '../UI/DoubleText.vue'
+import BaseTimeView from '../UI/BaseTimeView.vue'
+import ActivityProgrssBar from '../UI/ActivityProgrssBar.vue'
 
 const props = defineProps({
 	activities: {

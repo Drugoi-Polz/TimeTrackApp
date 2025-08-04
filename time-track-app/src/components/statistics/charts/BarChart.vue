@@ -1,9 +1,9 @@
 <script setup>
 import { Bar } from 'vue-chartjs'
 import { computed } from 'vue'
-import { toMinutes } from '../../functions'
+import { toMinutes } from '../../../functions/timeFunctions'
 import { Chart as ChartJS, Title, Tooltip, BarElement, CategoryScale, LinearScale } from 'chart.js'
-import { getBarChartData, getLegendItems } from './chartData'
+import { getBarChartData, getLegendItems } from '../../../functions/chartData'
 
 import ChartEnvirement from './ChartEnvirement.vue'
 

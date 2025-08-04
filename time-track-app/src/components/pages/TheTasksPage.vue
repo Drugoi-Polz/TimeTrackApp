@@ -1,16 +1,15 @@
 <script setup>
-import { ref, watch, onMounted } from 'vue'
+import { ref } from 'vue'
+import { useDeleteConfirmation } from '../../composables/useDeleteConfirmation'
+import { usePersistentState } from '../../composables/usePersistentState'
+import { STORAGE_KEYS } from '../../constans'
 
-import TasksSection from '../components/TasksSection.vue'
-import TemplatesSection from '../components/TemplatesSection.vue'
-import TaskModal from '../components/TaskModal.vue'
-import TemplateModal from '../components/TemplateModal.vue'
-import ConfirmModal from '../components/UI/ConfirmModal.vue'
-import ThePageTitle from '../components/UI/ThePageTitle.vue'
-
-import { useDeleteConfirmation } from '../composables/useDeleteConfirmation'
-import { usePersistentState } from '../composables/usePersistentState'
-import { STORAGE_KEYS } from '../constans'
+import TasksSection from '../tasks/TasksSection.vue'
+import TemplatesSection from '../templates/TemplatesSection.vue'
+import TaskModal from '../tasks/TaskModal.vue'
+import TemplateModal from '../templates/TemplateModal.vue'
+import ConfirmModal from '../UI/ConfirmModal.vue'
+import ThePageTitle from '../UI/ThePageTitle.vue'
 
 const emit = defineEmits(['start', 'stop'])
 

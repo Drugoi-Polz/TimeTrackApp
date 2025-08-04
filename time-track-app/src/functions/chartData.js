@@ -1,4 +1,4 @@
-import { formatTime } from '../../functions'
+import { formatTime } from './timeFunctions'
 
 //Данные для столбчатого графика
 export function getBarChartData(data, toMinutes) {

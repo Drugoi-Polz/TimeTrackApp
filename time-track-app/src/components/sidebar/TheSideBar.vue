@@ -1,6 +1,6 @@
 <script setup>
 import SideBarItem from './SideBarItem.vue'
-import { items } from "../constans"
+import { items } from "../../constans"
 </script>
 
 <template>

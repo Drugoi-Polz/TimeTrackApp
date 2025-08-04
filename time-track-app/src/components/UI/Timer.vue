@@ -2,10 +2,10 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { PlayIcon } from '@heroicons/vue/24/outline'
 import { StopIcon } from '@heroicons/vue/24/solid'
-import { ICON_BUTTON_CONTENT, MAX_TIMER_SECONDS, STORAGE_KEYS } from '../constans'
-import { formatTime } from '../functions'
+import { ICON_BUTTON_CONTENT, MAX_TIMER_SECONDS, STORAGE_KEYS } from '../../constans'
+import { formatTime } from '../../functions/timeFunctions'
 
-import BaseButton from './UI/BaseButton.vue'
+import BaseButton from '../UI/BaseButton.vue'
 
 const props = defineProps({
 	initial: {

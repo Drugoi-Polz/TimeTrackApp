@@ -1,13 +1,13 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { getActivitiesForDate } from '../functions'
+import { getActivitiesForDate } from '../../functions/timeFunctions'
 import { startOfDay } from 'date-fns'
 
-import ThePageTitle from '../components/UI/ThePageTitle.vue'
-import ActivityItem from '../components/ActivityItem.vue'
-import TheDaySwitch from '../components/TheDaySwitch.vue'
-import DoubleText from '../components/UI/DoubleText.vue'
-import EmptyDataMessage from '../components/EmptyDataMessage.vue'
+import ThePageTitle from '../UI/ThePageTitle.vue'
+import ActivityItem from '../activities/ActivityItem.vue'
+import TheDaySwitch from '../UI/TheDaySwitch.vue'
+import DoubleText from '../UI/DoubleText.vue'
+import EmptyDataMessage from '../UI/EmptyDataMessage.vue'
 
 const props = defineProps({
 	activities: {

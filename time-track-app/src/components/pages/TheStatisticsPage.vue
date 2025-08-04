@@ -1,17 +1,17 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { startOfDay } from 'date-fns'
-import { getActivitiesForDate } from '../functions'
-import { STATISTICS_MODES } from '../constans'
+import { getActivitiesForDate } from '../../functions/timeFunctions'
+import { STATISTICS_MODES } from '../../constans'
 
-import ThePageTitle from '../components/UI/ThePageTitle.vue'
-import TheDaySwitch from '../components/TheDaySwitch.vue'
-import IconTextButton from '../components/UI/IconTextButton.vue'
-import TheListStatistics from '../components/TheListStatistics.vue'
-import PieCharts from '../components/charts/PieCharts.vue'
-import BarChart from '../components/charts/BarChart.vue'
-import DoubleText from '../components/UI/DoubleText.vue'
-import EmptyDataMessage from '../components/EmptyDataMessage.vue'
+import ThePageTitle from '../UI/ThePageTitle.vue'
+import TheDaySwitch from '../UI/TheDaySwitch.vue'
+import IconTextButton from '../UI/IconTextButton.vue'
+import TheListStatistics from '../statistics/TheListStatistics.vue'
+import PieCharts from '../statistics/charts/PieCharts.vue'
+import BarChart from '../statistics/charts/BarChart.vue'
+import DoubleText from '../UI/DoubleText.vue'
+import EmptyDataMessage from '../UI/EmptyDataMessage.vue'
 
 const props = defineProps({
 	activities: Array,

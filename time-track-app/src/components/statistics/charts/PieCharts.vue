@@ -2,8 +2,8 @@
 import { Pie } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js'
 import { computed } from 'vue'
-import { getLegendItems, getPieChartData } from './chartData'
-import { formatTime } from '../../functions'
+import { getLegendItems, getPieChartData } from '../../../functions/chartData'
+import { formatTime } from '../../../functions/timeFunctions'
 
 import ChartEnvirement from './ChartEnvirement.vue'
 

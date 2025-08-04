@@ -1,4 +1,4 @@
-import { BUTTON_CONTENT_TYPES, BUTTON_TYPES } from './constans'
+import { BUTTON_CONTENT_TYPES, BUTTON_TYPES } from '../constans'
 
 export function isButtonTypeValid(value) {
 	return BUTTON_TYPES.includes(value)

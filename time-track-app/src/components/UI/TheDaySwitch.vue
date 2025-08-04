@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { isSameDay, addDays } from 'date-fns'
-import { label } from '../functions'
+import { label } from '../../functions/timeFunctions'
 
 const props = defineProps({
 	selectedDate: {
